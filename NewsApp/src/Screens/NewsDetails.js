@@ -20,7 +20,19 @@ const NewsDetails = () => {
 
           width: '94%',
         }}>
-        {route.params.data.title}
+        {route.params.data.language}
+      </Text>
+      <Text
+        style={{
+          fontSize: 20,
+          fontWeight: '800',
+          color: '#000',
+          marginTop: 10,
+          alignSelf: 'center',
+
+          width: '94%',
+        }}>
+        {route.params.data.name}
       </Text>
       <Text
         style={{
