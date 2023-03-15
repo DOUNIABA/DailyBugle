@@ -9,7 +9,7 @@ const News = () => {
   const [news, setNews] = useState([]);
 
   const apiKey = '3525497ff5f641339cd8761ce978f9a8';
-  const url = `https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=${apiKey}`;
+  const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`;
 
   useEffect(() => {
     axios.get(url)
@@ -98,7 +98,7 @@ const News = () => {
           marginLeft: 20,
           marginTop: 20,
         }}>
-        Titres
+        All News
       </Text>
       <View>
         <FlatList
