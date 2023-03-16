@@ -1,7 +1,6 @@
 import {View, Text, FlatList, Image,fch, TouchableOpacity} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
- 
 
 const CategoryNews = () => {
 

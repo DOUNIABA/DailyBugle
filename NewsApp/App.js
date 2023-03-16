@@ -1,4 +1,3 @@
-// In App.js in a new project
 
 import * as React from 'react';
 import { View, Text } from 'react-native';
@@ -8,6 +7,7 @@ import News from './src/Screens/News';
 import CategoryNews from './src/Screens/CategoryNews';
 import NewsDetails from './src/Screens/NewsDetails';
 import Splash from './src/Screens/Splash';
+import BottomTab from './Navigation/BottomTab';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,10 +16,11 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>
         {/* <Stack.Screen name="Home" component={HomeScreen} options={{headerShown:false}} /> */}
-        <Stack.Screen name="News" component={News} options={{headerShown:false}} />
-        <Stack.Screen name="CategoryNews" component={CategoryNews} options={{headerShown:false}} />
+        {/* <Stack.Screen name="News" component={News} options={{headerShown:false}} />
+        <Stack.Screen name="Splash" component={Splash} options={{headerShown:false}} /> */}
+        <Stack.Screen name="BottomTab" component={BottomTab} options={{headerShown:false}} />
         <Stack.Screen name="NewsDetails" component={NewsDetails} options={{headerShown:false}} />
-        <Stack.Screen name="Splash" component={Splash} options={{headerShown:false}} />
+        <Stack.Screen name="CategoryNews" component={CategoryNews} options={{headerShown:false}} />
 
       </Stack.Navigator>
     </NavigationContainer>

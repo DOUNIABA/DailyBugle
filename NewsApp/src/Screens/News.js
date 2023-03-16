@@ -133,19 +133,10 @@ const News = () => {
                 />
                 
                 <View style={{padding: 10}}>
-                <Text
-                    style={{
-                      color: '#fff',
-                      width: '40%',
-                      fontSize: 14,
-                      fontWeight: '700',
-                    }}>
-                    {item.country}
-                  </Text>
                   <Text
                     style={{
                       color: '#fff',
-                      width: '40%',
+                      width: 200,
                       fontSize: 14,
                       fontWeight: '700',
                     }}>
@@ -154,7 +145,7 @@ const News = () => {
                   <Text
                     style={{
                       color: '#fff',
-                      width:'50%',
+                      width: 300,
                       fontSize: 12,
                       marginTop: 10,
                     }}>
@@ -171,4 +162,3 @@ const News = () => {
 };
 
 export default News;
-
