@@ -1,100 +1,106 @@
-import {View, Text, Image,TouchableOpacity} from 'react-native';
+import {View, Text, Image,TouchableOpacity,FlatList} from 'react-native';
 import React from 'react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import {useRoute} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const favoris = () => {
+const Favoris = ({navigation}) => {
   const route = useRoute();
   const [news, setNews] = useState([]);
-  
+
+  const getFavorite=async()=>{
+    setNews(JSON.parse(await AsyncStorage.getItem('favotite')))
+  }
+ 
+
+useEffect((()=>{
+  getFavorite()
+}),[news])
+
   return (
-    <View style={{flex: 1, backgroundColor: '#fff'}}>
-      <Image
-        source={{uri: route.params.data.urlToImage}}
-        style={{width: '100%', height: 200}}
-      />
-       <Text
-        style={{
-          fontSize: 15,
-          fontWeight: '800',
-          color: '#000',
-          marginTop: 10,
-          alignSelf: 'center',
-          width: '94%',
-        }}>
-        {route.params.data.source.name}
-      </Text>
-      <Text
-        style={{
-          fontSize: 20,
-          fontWeight: '500',
-          color: 'gray',
-          marginTop: 10,
-          alignSelf: 'center',
-
-          width: '94%',
-        }}>
-        {route.params.data.author}
-      </Text>
-      <Text
-        style={{
-          fontSize: 20,
-          fontWeight: '800',
-          color: '#000',
-          marginTop: 10,
-          alignSelf: 'center',
-          width: '94%',
-        }}>
-        {route.params.data.title}
-      </Text>
-      <Text
-        style={{
-          fontSize: 16,
-          fontWeight: '600',
-          color: '#000',
-          marginTop: 10,
-          alignSelf: 'center',
-
-          width: '94%',
-        }}>
-        {route.params.data.description}
-      </Text>
-      <Text
-        style={{
-          fontSize: 10,
-          fontWeight: '600',
-          color: '#000',
-          marginTop: 10,
-          alignSelf: 'center',
-
-          width: '94%',
-        }}>
-        {route.params.data.publishedAt}
-      </Text>
-
-      <Text
-        style={{
-          fontSize: 16,
-          fontWeight: '600',
-          color: '#000',
-          marginTop: 10,
-          alignSelf: 'center',
-
-          width: '94%',
-        }}>
-        {route.params.data.content}
-      </Text>
-      <View>
-      <TouchableOpacity onPress={() => addToFavorites(news)}>
-      <Image
-       source={require('../../images/favori.png')}
-        style={{width: '10%', height: 39,alignSelf:'flex-end',marginRight:15}}
+    <View  style={{
+      flex: 1,
+      backgroundColor: '#fff',
+      backgroundColor: '#000',
+    }}>        
+    <TouchableOpacity       
+          onPress={() => navigation.goBack()} >
+          <Image source={require('../../images/icons8-arrière-48.png')}  
+          style={{marginTop:10,marginLeft:10,backgroundcolor:'white' }}
       />
       </TouchableOpacity>
-      </View>
+    <Text
+        style={{
+          color: '#fff',
+          fontSize: 20,
+          fontWeight: '800',
+          marginLeft: 20,
+          marginTop: 20,
+        }}>
+        Your Favoris
+      </Text>
+    
+
+      <FlatList
+          data={news}
+          renderItem={({item}) => {
+            return (
+              <TouchableOpacity
+                style={{
+                  borderColor: '#fff',
+                  borderWidth: 1,
+                  width: '90%',
+                  height: 100,
+                  alignSelf: 'center',
+                  marginTop: 20,
+                  borderRadius: 10,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
+                <Image
+                  source={{uri:item?.image}}
+                  style={{
+                    width: 100,
+                    height: 90,
+                    borderTopLeftRadius: 10,
+                    borderBottomLeftRadius: 10,
+                  }}
+                />
+                <View style={{padding: 10}}>
+                <Text
+                    style={{
+                      color: '#fff',
+                      width: 300,
+                      fontSize: 14,
+                      fontWeight: '700',
+                    }}>
+                    {item.title}
+                  </Text>
+                  <Text
+                    style={{
+                      color: '#fff',
+                      width: 200,
+                      fontSize: 12,
+                      marginTop: 8,
+                    }}>
+                    {item.description}
+                  </Text>
+                  <TouchableOpacity><Text onPress={()=>Favoritedelete()} style={{color:'white'}}>Annuler</Text></TouchableOpacity>
+                </View>
+              </TouchableOpacity>
+              
+            );
+          }}
+        />
+        
     </View>
   );
 };
 
-export default favoris;
+export default Favoris;
+
+export const Favoritedelete = async () => {
+  await AsyncStorage.clear();
+};
 

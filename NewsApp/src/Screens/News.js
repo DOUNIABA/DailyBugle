@@ -45,7 +45,7 @@ const News = () => {
             {title: 'business', image: require('./../../images/business.jpg')},
           ]}
           horizontal
-          renderItem={({item, index}) => {
+          renderItem={({item}) => {
             return (
               <TouchableOpacity
                 style={{
@@ -123,7 +123,7 @@ const News = () => {
                   });
                 }}>
                 <Image
-                  source={{uri: item.urlToImage}}
+                  source={{uri: item?.urlToImage}}
                   style={{
                     width: 100,
                     height: 90,
@@ -131,12 +131,11 @@ const News = () => {
                     borderBottomLeftRadius: 10,
                   }}
                 />
-                
                 <View style={{padding: 10}}>
                   <Text
                     style={{
                       color: '#fff',
-                      width: 200,
+                      width: 300,
                       fontSize: 14,
                       fontWeight: '700',
                     }}>
@@ -145,11 +144,11 @@ const News = () => {
                   <Text
                     style={{
                       color: '#fff',
-                      width: 300,
+                      width: 200,
                       fontSize: 12,
                       marginTop: 10,
                     }}>
-                    {item.description.substring(0, 30) + '...'}
+                    {item.description}
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -157,8 +156,10 @@ const News = () => {
           }}
         />
       </View>
-    </View>
+    </View> 
+    
   );
+ 
 };
 
 export default News;

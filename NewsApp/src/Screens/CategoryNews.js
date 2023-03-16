@@ -1,10 +1,9 @@
-import {View, Text, FlatList, Image,fch, TouchableOpacity} from 'react-native';
+import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 const CategoryNews = () => {
 
-  const route = useRoute();
   const navigation = useNavigation();
   const [news, setNews] = useState([]);
 
@@ -30,6 +29,12 @@ const CategoryNews = () => {
         backgroundColor: '#fff',
         backgroundColor: '#000',
       }}>
+          <TouchableOpacity       
+          onPress={() => navigation.goBack()} >
+          <Image source={require('../../images/icons8-arrière-48.png')}  
+          style={{marginTop:10,marginLeft:10 }}
+      />
+      </TouchableOpacity>
       <Text
         style={{
           color: '#fff',

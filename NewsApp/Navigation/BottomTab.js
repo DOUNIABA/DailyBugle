@@ -1,8 +1,11 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
 import News from '../src/Screens/News';
 import { Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import Home from '../src/Screens/Home';
+import NewsDetails from '../src/Screens/NewsDetails';
+import Favoris from '../src/Screens/favoris';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,9 +22,8 @@ const BottomTab = () => {
         showLabel: false,
         activeTintColor:"green",
       }}>
-
       <Tab.Screen
-        name="Cart"
+        name="News"
         component={News}
         options={{
           tabBarIcon: () => (
@@ -30,11 +32,12 @@ const BottomTab = () => {
         }}
       />
        <Tab.Screen
-        name="Home"
-        component={News}
+        name="favoris"
+        component={Favoris}
         options={{
           tabBarIcon: () => (
-            <Image source={require('../src/icon/icons8-ruban-marque-page-30.png')} style={{width:30}}/>
+            <Image source={require('../src/icon/icons8-ruban-marque-page-30.png')} style={{width:30}}
+            />
           ),
         }}
       />
