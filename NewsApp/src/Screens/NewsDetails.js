@@ -1,19 +1,18 @@
 import {View, Text, Image,TouchableOpacity} from 'react-native';
 import React from 'react';
-import { useState } from 'react';
 import {useRoute} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const NewsDetails = ({navigation}) => {
+
   const Favoris = async news => {
-    let newFavorites = (await AsyncStorage.getItem('favotite')) || '[]';
+    let newFavorites = (await AsyncStorage.getItem('favotite'))||'[]';
     newFavorites = JSON.parse(newFavorites);
     newFavorites.push(news);
     await AsyncStorage.setItem('favotite', JSON.stringify(newFavorites));
   };
   
   const route = useRoute();
-  const [news, setNews] = useState([]);
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
       <TouchableOpacity       
@@ -100,7 +99,9 @@ const NewsDetails = ({navigation}) => {
       <TouchableOpacity onPress={() => Favoris({
         name:route.params.data.source.name,
         description:route.params.data.description,
-        image:route.params.data?.urlToImage})}>
+        image:route.params.data?.urlToImage,
+       })}>
+          {/* <TouchableOpacity onPress={() => Favoritedelete()}> */}
       <Image
        source={require('../../images/favori.png')}
         style={{width: '10%', height: 39,alignSelf:'flex-end',marginRight:15}}
@@ -112,7 +113,6 @@ const NewsDetails = ({navigation}) => {
 };
 
 export default NewsDetails;
-
 
 export const Favoritedelete = async () => {
   await AsyncStorage.clear();

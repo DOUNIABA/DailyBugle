@@ -1,18 +1,15 @@
 import {View, Text, Image,TouchableOpacity,FlatList} from 'react-native';
 import React from 'react';
 import { useState,useEffect } from 'react';
-import {useRoute} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Favoris = ({navigation}) => {
-  const route = useRoute();
   const [news, setNews] = useState([]);
 
   const getFavorite=async()=>{
     setNews(JSON.parse(await AsyncStorage.getItem('favotite')))
   }
  
-
 useEffect((()=>{
   getFavorite()
 }),[news])
@@ -39,7 +36,6 @@ useEffect((()=>{
         }}>
         Your Favoris
       </Text>
-    
 
       <FlatList
           data={news}
@@ -86,6 +82,7 @@ useEffect((()=>{
                     }}>
                     {item.description}
                   </Text>
+                 
                   <TouchableOpacity><Text onPress={()=>Favoritedelete()} style={{color:'white'}}>Annuler</Text></TouchableOpacity>
                 </View>
               </TouchableOpacity>

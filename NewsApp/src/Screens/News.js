@@ -3,7 +3,6 @@ import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 
-
 const News = () => {
   const navigation = useNavigation();
   const [news, setNews] = useState([]);
@@ -98,7 +97,16 @@ const News = () => {
           marginLeft: 20,
           marginTop: 20,
         }}>
-        All News
+          <TouchableOpacity style={{  button:{
+    backgroundColor: 'blue',
+    height:50,
+    borderRadius:10,
+    justifyContent:'center',
+    alignItems:'center',
+    // marginBottom:50
+  }}}>
+        <Text onPress={() =>navigation.navigate("screenGo")} style={{fontWeight:'bold' ,color:'white', fontSize:18}}>passer </Text>
+      </TouchableOpacity>
       </Text>
       <View>
         <FlatList
@@ -109,8 +117,8 @@ const News = () => {
                 style={{
                   borderColor: '#fff',
                   borderWidth: 1,
-                  width: '90%',
-                  height: 100,
+                  width: '95%',
+                  height: 150,
                   alignSelf: 'center',
                   marginTop: 20,
                   borderRadius: 10,
@@ -126,7 +134,7 @@ const News = () => {
                   source={{uri: item?.urlToImage}}
                   style={{
                     width: 100,
-                    height: 90,
+                    height: 130,
                     borderTopLeftRadius: 10,
                     borderBottomLeftRadius: 10,
                   }}
@@ -135,8 +143,8 @@ const News = () => {
                   <Text
                     style={{
                       color: '#fff',
-                      width: 300,
-                      fontSize: 14,
+                      width: 250,
+                      fontSize: 10,
                       fontWeight: '700',
                     }}>
                     {item.title}
@@ -145,7 +153,7 @@ const News = () => {
                     style={{
                       color: '#fff',
                       width: 200,
-                      fontSize: 12,
+                      fontSize: 10,
                       marginTop: 10,
                     }}>
                     {item.description}
